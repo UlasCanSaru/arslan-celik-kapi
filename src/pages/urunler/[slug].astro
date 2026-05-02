@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+const categoryMap = {
+  "celik-kapi": "Çelik Kapı",
+  "yangin-kapisi": "Yangın Kapısı",
+  "bina-giris-kapisi": "Bina Giriş Kapısı",
+} as const;
+
+const whatsappQuoteUrl =
+  "https://wa.me/905326470613?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum.";
+
+export async function getStaticPaths() {
+  const products = await getCollection("products", ({ data }) => !data.draft);
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await render(product);
+const productBody = ((product as { body?: string }).body ?? "").trim();
+const galleryImages = Array.from(new Set([product.data.image, ...product.data.gallery])).slice(0, 6);
+
+const relatedProducts = (await getCollection("products", ({ data }) => !data.draft))
+  .filter((entry) => entry.slug !== product.slug && entry.data.category === product.data.category)
+  .slice(0, 3);
+---
+
+<BaseLayout title={`${product.data.title} | Arslan Çelik Kapı`} description={product.data.shortDescription}>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-icon">AK</span>
+        <span class="logo-text">
+          <span class="brand">ARSLAN ÇELİK KAPI</span>
+          <span class="sub">Özel Ölçü Üretim</span>
+        </span>
+      </a>
+      <nav class="header-links" aria-label="Ana menü">
+        <a class="active" href="/urunler/">Ürünler</a>
+        <a href="/projeler/">Projeler</a>
+        <a href="#">Hakkımızda</a>
+        <a href="/blog/">Blog</a>
+        <a href="/iletisim/">İletişim</a>
+      </nav>
+      <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="breadcrumb">
+          <a href="/">Anasayfa</a>
+          <span>/</span>
+          <a href="/urunler/">Ürünler</a>
+          <span>/</span>
+          <strong>{product.data.title}</strong>
+        </p>
+        <span class="hero-label">Ürün Detayı</span>
+        <h1>{product.data.title}</h1>
+        <p>{product.data.shortDescription}</p>
+      </div>
+    </section>
+
+    <section class="product-detail-section">
+      <div class="container detail-grid">
+        <div class="detail-image-column">
+          <div class="detail-image-wrap">
+            <img class="detail-image" src={product.data.image} alt={`${product.data.title} görseli`} />
+          </div>
+          {
+            galleryImages.length > 1 && (
+              <div class="detail-gallery-grid">
+                {galleryImages.slice(1).map((item, idx) => (
+                  <div class="detail-gallery-item" aria-label={`Galeri görseli ${idx + 1}`}>
+                    <img src={item} alt={`${product.data.title} galeri ${idx + 1}`} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <article class="detail-card">
+          <span class="product-category">{categoryMap[product.data.category]}</span>
+          <h2 class="detail-title">{product.data.title}</h2>
+          <p class="detail-code">Model Kodu: {product.data.modelCode}</p>
+
+          <div class="detail-specs">
+            <div class="meta-item">
+              <span class="meta-label">Ölçü</span>
+              <span class="meta-value">{product.data.size}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Renk</span>
+              <span class="meta-value">{product.data.color}</span>
+            </div>
+            <div class="meta-item detail-wide">
+              <span class="meta-label">Malzeme</span>
+              <span class="meta-value">{product.data.material}</span>
+            </div>
+          </div>
+
+          {
+            product.data.features.length > 0 && (
+              <div class="detail-features">
+                <h3>Öne Çıkan Özellikler</h3>
+                <ul>
+                  {product.data.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          <div class="detail-actions">
+            <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+            <a class="btn-secondary" href="/urunler/">Ürün Listesine Dön</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-description-section">
+      <div class="container">
+        <article class="description-card">
+          <h3>Ürün Açıklaması</h3>
+          {productBody.length > 0 ? <Content /> : <p>Bu model için detaylı açıklama henüz eklenmedi.</p>}
+        </article>
+      </div>
+    </section>
+
+    {
+      relatedProducts.length > 0 && (
+        <section class="related-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h3 class="section-title">Benzer Ürünler</h3>
+                <p class="section-desc">Aynı kategorideki diğer modelleri inceleyebilirsiniz.</p>
+              </div>
+            </div>
+            <div class="products-grid">
+              {relatedProducts.map((related) => (
+                <article class="product-card">
+                  <div class="product-image-wrap">
+                    <img class="product-image" src={related.data.image} alt={`${related.data.title} görseli`} loading="lazy" />
+                  </div>
+                  <div class="product-body">
+                    <span class="product-category">{categoryMap[related.data.category]}</span>
+                    <h4 class="product-title">{related.data.title}</h4>
+                    <p class="product-code">Model Kodu: {related.data.modelCode}</p>
+                    <p class="product-summary">{related.data.shortDescription}</p>
+                    <div class="product-actions">
+                      <a class="product-link" href={`/urunler/${related.slug}/`}>Detay Sayfası</a>
+                      <a class="btn-primary" href={`/urunler/${related.slug}/`}>İncele</a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>

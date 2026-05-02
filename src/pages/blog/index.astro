@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const whatsappQuoteUrl =
+  "https://wa.me/905326470613?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum.";
+
+const blogPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+);
+---
+
+<BaseLayout title="Blog | Arslan Çelik Kapı" description="Kapı seçimi, güvenlik ve uygulama süreçleri hakkında blog yazıları.">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-icon">AK</span>
+        <span class="logo-text">
+          <span class="brand">ARSLAN ÇELİK KAPI</span>
+          <span class="sub">Özel Ölçü Üretim</span>
+        </span>
+      </a>
+      <nav class="header-links" aria-label="Ana menü">
+        <a href="/urunler/">Ürünler</a>
+        <a href="/projeler/">Projeler</a>
+        <a href="#">Hakkımızda</a>
+        <a class="active" href="/blog/">Blog</a>
+        <a href="/iletisim/">İletişim</a>
+      </nav>
+      <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="hero-label">Blog</span>
+        <h1>Bilgi ve <span>Rehber Yazıları</span></h1>
+        <p>Kapı seçimi, güvenlik ihtiyaçları ve uygulama süreçleri hakkında kısa ve faydalı içerikler.</p>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Son Yazılar</h2>
+            <p class="section-desc">Tüm yazılar panelden yönetilir; başlık, görsel ve içerik alanlarını dilediğin zaman güncelleyebilirsin.</p>
+          </div>
+        </div>
+
+        {
+          blogPosts.length > 0 ? (
+            <div class="blog-grid">
+              {blogPosts.map((post) => (
+                <article class="blog-card">
+                  <a class="blog-image-wrap" href={`/blog/${post.slug}/`}>
+                    <img class="blog-image" src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                  </a>
+                  <div class="blog-body">
+                    <p class="blog-date">{post.data.publishedAt}</p>
+                    <h3 class="blog-title">
+                      <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                    </h3>
+                    <p class="blog-excerpt">{post.data.excerpt}</p>
+                    <a class="blog-link" href={`/blog/${post.slug}/`}>Devamını Oku</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="product-empty">Henüz yayınlanmış blog yazısı yok.</div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

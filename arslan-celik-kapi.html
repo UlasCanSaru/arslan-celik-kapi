@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arslan Çelik Kapı — Özel Ölçü Çelik Kapı Üretimi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111111;
+    --black2: #1A1A1A;
+    --black3: #2A2A2A;
+    --white: #FFFFFF;
+    --offwhite: #F7F5F0;
+    --warm-gray: #ECE8DF;
+    --gold: #C7832B;
+    --gold-hover: #E09A3E;
+    --gold-dark: #A9671E;
+    --text-muted: #9B9590;
+    --text-light: #C8C4BE;
+    --container: 1200px;
+    --radius-btn: 10px;
+    --radius-card: 20px;
+    --radius-img: 28px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--black); line-height: 1.6; }
+
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; line-height: 1.2; }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 80px; }
+
+  /* HEADER */
+  header {
+    background: var(--black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--black3);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 32px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon svg { width: 20px; height: 20px; }
+  .logo-text { font-family: 'Manrope', sans-serif; }
+  .logo-text .brand { font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: -0.3px; }
+  .logo-text .sub { font-size: 11px; color: var(--text-muted); font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  nav { display: flex; gap: 4px; flex: 1; justify-content: center; }
+  nav a {
+    color: #B0ABA5;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: var(--white); background: var(--black3); }
+  nav a.active { color: var(--gold); }
+
+  .header-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .header-phone {
+    display: flex; align-items: center; gap: 6px;
+    color: var(--text-muted); font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .header-phone:hover { color: var(--white); }
+  .header-phone svg { width: 14px; height: 14px; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 10px 22px;
+    border-radius: var(--radius-btn);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--gold-hover); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid #3A3A3A;
+    padding: 10px 22px;
+    border-radius: var(--radius-btn);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, color .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+  .btn-outline-dark {
+    background: transparent;
+    color: var(--black);
+    border: 1.5px solid #C8C4BE;
+    padding: 10px 22px;
+    border-radius: var(--radius-btn);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+    display: inline-block;
+  }
+  .btn-outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--black) 0%, #1C1A17 60%, #252019 100%);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(199,131,43,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(199,131,43,0.15);
+    border: 1px solid rgba(199,131,43,0.3);
+    color: var(--gold-hover);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hero h1 {
+    font-size: 58px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-desc {
+    font-size: 17px;
+    color: #9B9590;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+  .hero-ctas { display: flex; gap: 12px; margin-bottom: 48px; }
+  .hero-trust {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    border-top: 1px solid #2A2A2A;
+    padding-top: 28px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #9B9590;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+
+  .hero-visual { position: relative; }
+  .hero-img-wrap {
+    background: var(--black3);
+    border-radius: var(--radius-img);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    position: relative;
+    border: 1px solid #333;
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: linear-gradient(160deg, #1E1C19 0%, #2A2520 100%);
+  }
+  .door-illustration {
+    width: 180px;
+    height: 280px;
+    border: 3px solid #4A3D2A;
+    border-radius: 8px 8px 4px 4px;
+    position: relative;
+    background: linear-gradient(180deg, #2D2520 0%, #211C16 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .door-panel {
+    width: 70px; height: 90px;
+    border: 2px solid #4A3D2A;
+    border-radius: 4px;
+  }
+  .door-handle {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 30px;
+    background: var(--gold);
+    border-radius: 4px;
+  }
+  .hero-float-card {
+    position: absolute;
+    background: var(--black2);
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 170px;
+  }
+  .hero-float-card.card-1 { bottom: 60px; left: -30px; }
+  .hero-float-card.card-2 { top: 60px; right: -20px; }
+  .float-icon {
+    width: 36px; height: 36px;
+    background: rgba(199,131,43,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .float-icon svg { width: 18px; height: 18px; color: var(--gold); }
+  .float-card-text .label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .float-card-text .val { font-size: 15px; font-weight: 700; color: var(--white); font-family: 'Manrope', sans-serif; }
+
+  /* SECTION COMMONS */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-family: 'Manrope', sans-serif;
+  }
+  .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--black);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .section-title.light { color: var(--white); }
+  .section-desc {
+    font-size: 16px;
+    color: #6B6760;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+  .section-desc.light { color: #9B9590; }
+  .section-head { margin-bottom: 48px; }
+  .section-head.centered { text-align: center; }
+  .section-head.centered .section-desc { margin: 0 auto; }
+
+  /* PRODUCT GROUPS */
+  .product-groups { padding: 96px 0; background: var(--offwhite); }
+  .groups-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .group-card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 1px solid #E5E1D8;
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .group-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+  .group-card:hover .group-img-bar { border-top-color: var(--gold); }
+  .group-img {
+    height: 200px;
+    background: linear-gradient(160deg, #1C1A17 0%, #2A2520 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .group-img-icon { font-size: 64px; opacity: 0.6; }
+  .group-img-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    border-top: 3px solid transparent;
+    transition: border-color .25s;
+  }
+  .group-body { padding: 28px 28px 24px; }
+  .group-body h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--black); font-family: 'Manrope', sans-serif; }
+  .group-body p { font-size: 14.5px; color: #6B6760; line-height: 1.65; margin-bottom: 20px; }
+  .group-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--gold);
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    transition: gap .2s;
+  }
+  .group-link:hover { gap: 10px; }
+  .group-link svg { width: 16px; height: 16px; }
+
+  /* FEATURED PRODUCTS */
+  .featured { padding: 96px 0; background: var(--white); }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .product-card {
+    background: var(--offwhite);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 1px solid #E5E1D8;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .product-img {
+    height: 220px;
+    background: linear-gradient(160deg, #1E1C19 0%, #2D2520 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .product-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(199,131,43,0.18);
+    border: 1px solid rgba(199,131,43,0.35);
+    color: var(--gold-hover);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .product-img-icon { font-size: 56px; opacity: 0.5; }
+  .product-body { padding: 22px; }
+  .product-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--black); font-family: 'Manrope', sans-serif; }
+  .product-body p { font-size: 14px; color: #6B6760; line-height: 1.6; margin-bottom: 18px; }
+  .product-price-note {
+    font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 16px;
+  }
+  .product-actions { display: flex; gap: 8px; }
+  .product-actions .btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    transition: .2s;
+  }
+  .btn-sm-primary { background: var(--gold); color: var(--white); border: none; }
+  .btn-sm-primary:hover { background: var(--gold-hover); }
+  .btn-sm-outline { background: transparent; border: 1.5px solid #C8C4BE; color: var(--black); }
+  .btn-sm-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* PROJECT SECTION */
+  .projects-section { padding: 96px 0; background: var(--offwhite); }
+  .projects-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .projects-visual {
+    background: linear-gradient(160deg, #1A1814 0%, #2A2420 100%);
+    border-radius: var(--radius-img);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+  }
+  .workshop-illustration { text-align: center; }
+  .workshop-illustration .big-icon { font-size: 80px; display: block; margin-bottom: 12px; opacity: 0.6; }
+  .workshop-illustration span { color: #4A4540; font-size: 14px; font-family: 'Manrope', sans-serif; }
+  .project-features { list-style: none; margin: 28px 0 36px; display: flex; flex-direction: column; gap: 14px; }
+  .project-features li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15.5px; color: #4A4540; line-height: 1.5;
+  }
+  .feature-dot {
+    width: 22px; height: 22px;
+    background: rgba(199,131,43,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .feature-dot::after {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* WHY US */
+  .why-us { padding: 96px 0; background: var(--black); }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+  .why-card {
+    background: var(--black2);
+    border: 1px solid #2A2A2A;
+    border-radius: var(--radius-card);
+    padding: 28px;
+    transition: border-color .25s, transform .25s;
+  }
+  .why-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .why-icon {
+    width: 48px; height: 48px;
+    background: rgba(199,131,43,0.12);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .why-icon svg { width: 24px; height: 24px; color: var(--gold); }
+  .why-card h3 { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 10px; font-family: 'Manrope', sans-serif; }
+  .why-card p { font-size: 14px; color: #6B6760; line-height: 1.65; }
+
+  /* REFERENCES */
+  .references { padding: 96px 0; background: var(--white); }
+  .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ref-card {
+    background: var(--offwhite);
+    border: 1px solid #E5E1D8;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: transform .25s;
+  }
+  .ref-card:hover { transform: translateY(-4px); }
+  .ref-img {
+    height: 180px;
+    background: linear-gradient(160deg, #1E1C19 0%, #2A2520 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; opacity: 0.6;
+  }
+  .ref-body { padding: 22px; }
+  .ref-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--gold);
+    font-family: 'Manrope', sans-serif;
+    margin-bottom: 8px;
+  }
+  .ref-body h3 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 6px; font-family: 'Manrope', sans-serif; }
+  .ref-body .location { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+  .ref-body p { font-size: 14px; color: #6B6760; line-height: 1.6; }
+
+  /* QUALITY */
+  .quality { padding: 96px 0; background: var(--offwhite); }
+  .quality-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .quality-steps { display: flex; flex-direction: column; gap: 6px; }
+  .quality-step {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 20px;
+    border-radius: 14px;
+    transition: background .2s;
+    cursor: default;
+  }
+  .quality-step:hover { background: var(--white); }
+  .step-num {
+    font-size: 26px; font-weight: 800; color: rgba(199,131,43,0.2);
+    font-family: 'Manrope', sans-serif;
+    min-width: 36px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .quality-step h4 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; font-family: 'Manrope', sans-serif; }
+  .quality-step p { font-size: 14px; color: #6B6760; line-height: 1.6; }
+
+  /* BLOG */
+  .blog { padding: 96px 0; background: var(--white); }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .blog-card {
+    background: var(--offwhite);
+    border: 1px solid #E5E1D8;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    text-decoration: none;
+    display: block;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+  .blog-img {
+    height: 160px;
+    background: linear-gradient(160deg, #1C1A17 0%, #2A2520 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; opacity: 0.7;
+  }
+  .blog-body { padding: 22px; }
+  .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .blog-cat {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: 0.6px; text-transform: uppercase; font-family: 'Manrope', sans-serif;
+  }
+  .blog-date { font-size: 12px; color: var(--text-muted); }
+  .blog-dot { width: 3px; height: 3px; border-radius: 50%; background: #C8C4BE; }
+  .blog-body h3 { font-size: 16.5px; font-weight: 700; color: var(--black); margin-bottom: 10px; font-family: 'Manrope', sans-serif; line-height: 1.35; }
+  .blog-body p { font-size: 14px; color: #6B6760; line-height: 1.6; margin-bottom: 14px; }
+  .blog-read { font-size: 13.5px; font-weight: 600; color: var(--gold); font-family: 'Manrope', sans-serif; display: inline-flex; align-items: center; gap: 5px; }
+
+  /* CONTACT */
+  .contact { padding: 96px 0; background: var(--black); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .contact-info { padding-top: 8px; }
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(199,131,43,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 20px; height: 20px; color: var(--gold); }
+  .contact-info-item .ci-label { font-size: 12px; color: #555; font-weight: 500; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .contact-info-item .ci-val { font-size: 16px; color: var(--white); font-weight: 600; font-family: 'Manrope', sans-serif; }
+  .contact-form {
+    background: var(--black2);
+    border: 1px solid #2A2A2A;
+    border-radius: var(--radius-card);
+    padding: 36px;
+  }
+  .form-title { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 8px; font-family: 'Manrope', sans-serif; }
+  .form-desc { font-size: 14px; color: #6B6760; margin-bottom: 28px; line-height: 1.6; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #8A8580; margin-bottom: 6px; font-family: 'Manrope', sans-serif; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: #1C1C1C;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-size: 14.5px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select { color: #9B9590; }
+  .form-submit { width: 100%; margin-top: 8px; padding: 14px; font-size: 15px; }
+
+  /* FOOTER */
+  footer { background: #0A0A0A; border-top: 1px solid #1A1A1A; padding: 64px 0 0; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; padding-bottom: 48px; }
+  .footer-brand .brand-desc { font-size: 14px; color: #555; line-height: 1.7; margin: 16px 0 24px; max-width: 280px; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 0.8px; text-transform: uppercase; font-family: 'Manrope', sans-serif; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: #555; text-decoration: none; font-size: 14.5px; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .footer-contact-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+  .footer-contact-item span { color: #555; font-size: 14px; }
+  .footer-bottom {
+    border-top: 1px solid #1A1A1A;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-bottom span { font-size: 13px; color: #444; }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #444; text-decoration: none; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--gold); }
+
+  /* WA BUTTON */
+  .wa-btn {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    z-index: 200;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-btn:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+  .wa-btn svg { width: 28px; height: 28px; fill: white; }
+
+  /* SECTION DIVIDER */
+  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #E5E1D8, transparent); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--black2);
+    border-top: 1px solid #2A2A2A;
+    border-bottom: 1px solid #2A2A2A;
+    padding: 32px 0;
+  }
+  .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item {
+    text-align: center;
+    padding: 0 20px;
+    border-right: 1px solid #2A2A2A;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: 36px; font-weight: 800; color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label { font-size: 13px; color: #555; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a class="logo" href="#">
+        <div class="logo-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="2" width="10" height="16" rx="1.5" stroke="white" stroke-width="1.8"/>
+            <rect x="5" y="5" width="3.5" height="4.5" rx="0.5" stroke="white" stroke-width="1.3"/>
+            <rect x="5" y="11" width="3.5" height="4.5" rx="0.5" stroke="white" stroke-width="1.3"/>
+            <circle cx="14.5" cy="10" r="1.2" fill="white"/>
+            <line x1="13" y1="10" x2="16.5" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="brand">ARSLAN ÇELİK KAPI</div>
+          <div class="sub">Özel Ölçü Üretim</div>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#" class="active">Anasayfa</a>
+        <a href="#">Ürünler</a>
+        <a href="#">Hakkımızda</a>
+        <a href="#">Projeler</a>
+        <a href="#">Blog</a>
+        <a href="#">İletişim</a>
+      </nav>
+
+      <div class="header-right">
+        <a class="header-phone" href="tel:+905001234567">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+          0500 123 45 67
+        </a>
+        <a class="btn-primary" href="#">Teklif Al</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">Özel Ölçü Çelik Kapı Üretimi</div>
+        <h1>Güvenlik ve estetiği<br>bir araya getiren<br><span>çelik kapı</span> çözümleri</h1>
+        <p class="hero-desc">Arslan Çelik Kapı; çelik kapı, yangın kapısı, villa ve apartman giriş kapısı üretiminde özel ölçü ve proje bazlı çözümler sunar. İhtiyacınıza uygun model için hızlıca teklif alabilirsiniz.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary" style="padding:13px 28px; font-size:15px;">Teklif Al</a>
+          <a href="#products" class="btn-outline" style="padding:13px 28px; font-size:15px;">Ürünleri İncele</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 16 16" fill="currentColor" style="color:var(--gold)"><path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L7 8.172l3.293-3.293a1 1 0 1 1 1.414 1.414z"/></svg>
+            Özel ölçü üretim
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 16 16" fill="currentColor" style="color:var(--gold)"><path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L7 8.172l3.293-3.293a1 1 0 1 1 1.414 1.414z"/></svg>
+            Proje bazlı çözümler
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 16 16" fill="currentColor" style="color:var(--gold)"><path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L7 8.172l3.293-3.293a1 1 0 1 1 1.414 1.414z"/></svg>
+            Yangın kapısı seçenekleri
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-img-wrap">
+          <div class="hero-img-placeholder">
+            <div class="door-illustration">
+              <div class="door-panel"></div>
+              <div class="door-panel"></div>
+              <div class="door-handle"></div>
+            </div>
+            <span style="color:#3A3530; font-size:12px; font-family:'Manrope',sans-serif;">Ürün görseli buraya gelecek</span>
+          </div>
+        </div>
+        <div class="hero-float-card card-1">
+          <div class="float-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="float-card-text">
+            <div class="label">Üretim Tipi</div>
+            <div class="val">Özel Ölçü</div>
+          </div>
+        </div>
+        <div class="hero-float-card card-2">
+          <div class="float-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M16.24 7.76a6 6 0 0 1 0 8.49M4.93 4.93a10 10 0 0 0 0 14.14M7.76 7.76a6 6 0 0 0 0 8.49"/></svg>
+          </div>
+          <div class="float-card-text">
+            <div class="label">Hızlı Teklif</div>
+            <div class="val">WhatsApp / Form</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-label">Tamamlanan Proje</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label">Yıllık Deneyim</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Ana Ürün Kategorisi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">48<span>h</span></div>
+        <div class="stat-label">Teklif Dönüş Süresi</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT GROUPS -->
+<section class="product-groups" id="products">
+  <div class="container">
+    <div class="section-head centered">
+      <div class="section-label">Ürün Kategorileri</div>
+      <h2 class="section-title">İhtiyacınıza Uygun Kapı Çözümleri</h2>
+      <p class="section-desc">Konut, apartman, villa ve ticari alanlar için farklı kullanım ihtiyaçlarına uygun çelik kapı ve yangın kapısı modelleri sunuyoruz.</p>
+    </div>
+    <div class="groups-grid">
+      <a class="group-card" href="#">
+        <div class="group-img">
+          <div class="group-img-icon">🚪</div>
+          <div class="group-img-bar"></div>
+        </div>
+        <div class="group-body">
+          <h3>Çelik Kapı Modelleri</h3>
+          <p>Konut ve iş yerleri için güvenli, dayanıklı ve estetik çelik kapı seçenekleri. Farklı model ve renk alternatifleri mevcuttur.</p>
+          <span class="group-link">
+            Modelleri İncele
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+          </span>
+        </div>
+      </a>
+      <a class="group-card" href="#">
+        <div class="group-img">
+          <div class="group-img-icon">🔥</div>
+          <div class="group-img-bar"></div>
+        </div>
+        <div class="group-body">
+          <h3>Yangın Kapı Modelleri</h3>
+          <p>Proje ihtiyaçlarına uygun yangın kapısı çözümleri. İş yerleri, apartmanlar ve ticari yapılar için üretim desteği.</p>
+          <span class="group-link">
+            Modelleri İncele
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+          </span>
+        </div>
+      </a>
+      <a class="group-card" href="#">
+        <div class="group-img">
+          <div class="group-img-icon">🏠</div>
+          <div class="group-img-bar"></div>
+        </div>
+        <div class="group-body">
+          <h3>Villa ve Apartman Kapıları</h3>
+          <p>Bina girişleri, apartmanlar ve villalar için özel ölçü kapı üretimi. Estetik ve güvenliği bir arada sunar.</p>
+          <span class="group-link">
+            Modelleri İncele
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured">
+  <div class="container">
+    <div class="section-head" style="display:flex; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <div class="section-label">Öne Çıkan Modeller</div>
+        <h2 class="section-title">En çok tercih edilen<br>kapı modelleri</h2>
+      </div>
+      <a href="#" class="btn-outline-dark" style="margin-bottom:14px; white-space:nowrap;">Tüm Ürünleri Gör</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-badge">Çelik Kapı</div>
+          <div class="product-img-icon">🚪</div>
+        </div>
+        <div class="product-body">
+          <h3>ACK-301 Standart Çelik Kapı</h3>
+          <p>Konut ve iş yeri girişleri için sağlam, güvenli ve estetik görünümlü çelik kapı modeli.</p>
+          <p class="product-price-note">Özel ölçüye göre teklif alınız</p>
+          <div class="product-actions">
+            <a href="#" class="btn-sm btn-sm-primary">Teklif Al</a>
+            <a href="#" class="btn-sm btn-sm-outline">Detaylar</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-badge">Yangın Kapısı</div>
+          <div class="product-img-icon">🔥</div>
+        </div>
+        <div class="product-body">
+          <h3>AYK-60 Yangın Kapısı</h3>
+          <p>Ticari yapılar ve apartmanlar için proje ihtiyaçlarına göre üretilen yangın kapısı çözümü.</p>
+          <p class="product-price-note">Özel ölçüye göre teklif alınız</p>
+          <div class="product-actions">
+            <a href="#" class="btn-sm btn-sm-primary">Teklif Al</a>
+            <a href="#" class="btn-sm btn-sm-outline">Detaylar</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-badge">Villa Kapısı</div>
+          <div class="product-img-icon">🏠</div>
+        </div>
+        <div class="product-body">
+          <h3>AVK-120 Villa Giriş Kapısı</h3>
+          <p>Villa ve müstakil konutlar için özel ölçü, geniş kanat seçenekleriyle üretilen giriş kapısı.</p>
+          <p class="product-price-note">Özel ölçüye göre teklif alınız</p>
+          <div class="product-actions">
+            <a href="#" class="btn-sm btn-sm-primary">Teklif Al</a>
+            <a href="#" class="btn-sm btn-sm-outline">Detaylar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT SECTION -->
+<section class="projects-section">
+  <div class="container">
+    <div class="projects-inner">
+      <div class="projects-visual">
+        <div class="workshop-illustration">
+          <span class="big-icon">🏭</span>
+          <span>Üretim / Atölye Görseli</span>
+        </div>
+      </div>
+      <div class="projects-content">
+        <div class="section-label">Proje Bazlı Üretim</div>
+        <h2 class="section-title" style="font-size:36px;">Özel ölçü ve proje bazlı üretim desteği</h2>
+        <p class="section-desc">Apartman, villa, iş yeri ve toplu konut projelerinde ihtiyaca uygun ölçü, model ve kullanım senaryosuna göre kapı çözümleri sunuyoruz.</p>
+        <ul class="project-features">
+          <li>
+            <div class="feature-dot"></div>
+            <span>Özel ölçü üretim — standart dışı boyutlarda sorunsuz üretim</span>
+          </li>
+          <li>
+            <div class="feature-dot"></div>
+            <span>Model ve renk seçenekleri — projeye uygun görsel çözümler</span>
+          </li>
+          <li>
+            <div class="feature-dot"></div>
+            <span>Yangın kapısı ve bina giriş kapısı çözümleri</span>
+          </li>
+          <li>
+            <div class="feature-dot"></div>
+            <span>Teklif ve keşif süreci desteği — başlangıçtan teslimata kadar</span>
+          </li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="padding:13px 28px; font-size:15px;">Projeniz İçin Teklif Alın</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="section-head centered">
+      <div class="section-label">Neden Biz?</div>
+      <h2 class="section-title light">Neden Arslan Çelik Kapı?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Dayanıklı Üretim</h3>
+        <p>Uzun ömürlü kullanım için sağlam malzeme ve dikkatli işçilik. Her kapı titizlikle üretilir.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3>Özel Ölçü Çözümler</h3>
+        <p>Farklı mekân ihtiyaçlarına uygun ölçü ve model seçenekleri. Standart dışı projeler için üretim.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Güvenlik Odaklı Tasarım</h3>
+        <p>Kullanım alanına göre güvenlik ve dayanıklılık öncelikli ürün yaklaşımı ile üretim.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.34 2 2 0 0 1 3.9 1H7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Hızlı İletişim ve Teklif</h3>
+        <p>WhatsApp, telefon ve form üzerinden kolay teklif talebi. Kısa sürede geri dönüş garantisi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="references">
+  <div class="container">
+    <div class="section-head centered">
+      <div class="section-label">Uygulama Alanları</div>
+      <h2 class="section-title">Tamamlanan Projeler ve Referanslar</h2>
+      <p class="section-desc">Farklı kullanım alanlarına yönelik tamamladığımız kapı uygulamalarından bazılarını inceleyebilirsiniz.</p>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-img">🏢</div>
+        <div class="ref-body">
+          <div class="ref-tag">Apartman Girişi</div>
+          <h3>Yenimahalle Konut Projesi</h3>
+          <div class="location">📍 Ankara</div>
+          <p>48 dairenin ortak giriş kapısı ve bina giriş kapısı uygulaması.</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-img">🏠</div>
+        <div class="ref-body">
+          <div class="ref-tag">Villa Kapısı</div>
+          <h3>Silivri Villa Projesi</h3>
+          <div class="location">📍 İstanbul</div>
+          <p>12 bağımsız villa için özel ölçü çelik kapı ve dekoratif panel uygulaması.</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-img">🏭</div>
+        <div class="ref-body">
+          <div class="ref-tag">Yangın Kapısı</div>
+          <h3>Karma Kullanım AVM Projesi</h3>
+          <div class="location">📍 Bursa</div>
+          <p>Ticari yapı için yangın çıkış alanları ve bölme kapısı uygulaması.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="quality">
+  <div class="container">
+    <div class="quality-inner">
+      <div>
+        <div class="section-label">Üretim Yaklaşımı</div>
+        <h2 class="section-title">Kaliteyi üretim sürecinin her adımında önemsiyoruz</h2>
+        <p class="section-desc" style="margin-bottom:0;">Ürünlerimizde dayanıklılık, güvenli kullanım, ölçü doğruluğu ve estetik görünümü birlikte değerlendiriyoruz.</p>
+      </div>
+      <div class="quality-steps">
+        <div class="quality-step">
+          <div class="step-num">01</div>
+          <div>
+            <h4>Malzeme Seçimi</h4>
+            <p>Uzun ömürlü kullanım için doğru hammadde ve profil seçimi yapılır.</p>
+          </div>
+        </div>
+        <div class="quality-step">
+          <div class="step-num">02</div>
+          <div>
+            <h4>Ölçüye Uygun Üretim</h4>
+            <p>Her sipariş, talep edilen ölçü ve teknik gereksinimlere göre üretilir.</p>
+          </div>
+        </div>
+        <div class="quality-step">
+          <div class="step-num">03</div>
+          <div>
+            <h4>Kullanım Alanına Göre Model Önerisi</h4>
+            <p>Konut, villa veya ticari alan fark etmeksizin doğru ürün yönlendirmesi yapılır.</p>
+          </div>
+        </div>
+        <div class="quality-step">
+          <div class="step-num">04</div>
+          <div>
+            <h4>Montaj ve Uygulama Desteği</h4>
+            <p>Üretim sonrası montaj sürecinde destek ve teknik yönlendirme sağlanır.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <div class="container">
+    <div class="section-head" style="display:flex; align-items:flex-end; justify-content:space-between;">
+      <div>
+        <div class="section-label">Blog</div>
+        <h2 class="section-title">Kapı Seçimi ve<br>Güvenlik Rehberi</h2>
+      </div>
+      <a href="#" class="btn-outline-dark" style="margin-bottom:14px;">Tüm Yazılar</a>
+    </div>
+    <div class="blog-grid">
+      <a class="blog-card" href="#">
+        <div class="blog-img">🔒</div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Çelik Kapı</span>
+            <div class="blog-dot"></div>
+            <span class="blog-date">12 Mart 2025</span>
+          </div>
+          <h3>Çelik Kapı Seçerken Nelere Dikkat Edilmeli?</h3>
+          <p>Doğru çelik kapı seçimi için dikkat etmeniz gereken teknik özellikler ve model kriterleri.</p>
+          <span class="blog-read">Devamını Oku →</span>
+        </div>
+      </a>
+      <a class="blog-card" href="#">
+        <div class="blog-img">🔥</div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Yangın Kapısı</span>
+            <div class="blog-dot"></div>
+            <span class="blog-date">28 Şubat 2025</span>
+          </div>
+          <h3>Yangın Kapısı Nerelerde Kullanılır?</h3>
+          <p>Yangın kapısı zorunluluğu olan alanlar, kullanım senaryoları ve doğru seçim kriterleri.</p>
+          <span class="blog-read">Devamını Oku →</span>
+        </div>
+      </a>
+      <a class="blog-card" href="#">
+        <div class="blog-img">🏢</div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Apartman Kapısı</span>
+            <div class="blog-dot"></div>
+            <span class="blog-date">15 Ocak 2025</span>
+          </div>
+          <h3>Apartman Giriş Kapısı Seçiminde Önemli Kriterler</h3>
+          <p>Bina güvenliği, estetik ve uzun ömürlü kullanım için apartman giriş kapısı rehberi.</p>
+          <span class="blog-read">Devamını Oku →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">İletişim</div>
+        <h2 class="section-title light" style="font-size:36px; margin-bottom:14px;">Projeniz için<br>teklif alın</h2>
+        <p class="section-desc light" style="margin-bottom:40px;">İhtiyacınız olan kapı türünü ve ölçü bilgilerinizi paylaşın; ekibimiz en kısa sürede dönüş yapsın.</p>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.34 2 2 0 0 1 3.9 1H7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="ci-label">Telefon</div>
+            <div class="ci-val">0500 123 45 67</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 0C5.148 0 0 5.148 0 11.5c0 2.027.533 3.93 1.461 5.583L0 23l6.136-1.436A11.455 11.455 0 0 0 11.5 23C17.852 23 23 17.852 23 11.5S17.852 0 11.5 0zm0 21.103a9.59 9.59 0 0 1-4.887-1.336l-.35-.208-3.64.851.873-3.553-.228-.365A9.586 9.586 0 0 1 1.897 11.5C1.897 6.196 6.196 1.897 11.5 1.897c5.304 0 9.603 4.299 9.603 9.603 0 5.304-4.299 9.603-9.603 9.603z"/></svg>
+          </div>
+          <div>
+            <div class="ci-label">WhatsApp</div>
+            <div class="ci-val">0500 123 45 67</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="ci-label">E-posta</div>
+            <div class="ci-val">info@arslancelik.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="ci-label">Adres</div>
+            <div class="ci-val">Sanayi Mah. Çelik Cad. No:12, İstanbul</div>
+          </div>
+        </div>
+        <div style="font-size:13.5px; color:#3A3530; margin-top:8px; padding:14px 18px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid #222;">
+          🕐 Pazartesi – Cumartesi: 08:00 – 18:00
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-title">Teklif Talebi Gönder</div>
+        <p class="form-desc">Formu doldurun, ekibimiz kısa sürede iletişime geçsin.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ad Soyad</label>
+            <input type="text" placeholder="Adınız Soyadınız">
+          </div>
+          <div class="form-group">
+            <label>Telefon *</label>
+            <input type="tel" placeholder="0500 000 00 00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-posta</label>
+          <input type="email" placeholder="ornek@email.com">
+        </div>
+        <div class="form-group">
+          <label>İlgilendiğiniz Kategori</label>
+          <select>
+            <option value="" disabled selected>Seçiniz</option>
+            <option>Çelik Kapı Modelleri</option>
+            <option>Yangın Kapı Modelleri</option>
+            <option>Villa ve Apartman Kapıları</option>
+            <option>Diğer / Belirtmek istiyorum</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ölçü Bilgisi (opsiyonel)</label>
+          <input type="text" placeholder="Örn: 90×210 cm veya özel ölçü">
+        </div>
+        <div class="form-group">
+          <label>Mesajınız</label>
+          <textarea placeholder="Projeniz veya ihtiyacınız hakkında bilgi verin..."></textarea>
+        </div>
+        <button class="btn-primary form-submit" type="button">Teklif Talebi Gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#" style="margin-bottom:0;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="2" width="10" height="16" rx="1.5" stroke="white" stroke-width="1.8"/>
+              <rect x="5" y="5" width="3.5" height="4.5" rx="0.5" stroke="white" stroke-width="1.3"/>
+              <rect x="5" y="11" width="3.5" height="4.5" rx="0.5" stroke="white" stroke-width="1.3"/>
+              <circle cx="14.5" cy="10" r="1.2" fill="white"/>
+              <line x1="13" y1="10" x2="16.5" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <div class="brand">ARSLAN ÇELİK KAPI</div>
+            <div class="sub">Özel Ölçü Üretim</div>
+          </div>
+        </a>
+        <p class="brand-desc">Çelik kapı, yangın kapısı ve bina giriş kapısı üretiminde özel ölçü ve proje bazlı çözümler sunuyoruz.</p>
+        <div style="display:flex; gap:10px;">
+          <a href="#" style="width:36px;height:36px;background:#1A1A1A;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2A2A;transition:.2s;" onmouseover="this.style.borderColor='#C7832B'" onmouseout="this.style.borderColor='#2A2A2A'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#555"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.34 2 2 0 0 1 3.9 1H7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="#" style="width:36px;height:36px;background:#1A1A1A;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2A2A;transition:.2s;" onmouseover="this.style.borderColor='#C7832B'" onmouseout="this.style.borderColor='#2A2A2A'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#555"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="#555" stroke-width="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kurumsal</h4>
+        <ul>
+          <li><a href="#">Hakkımızda</a></li>
+          <li><a href="#">Projeler</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">İletişim</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ürünler</h4>
+        <ul>
+          <li><a href="#">Çelik Kapı Modelleri</a></li>
+          <li><a href="#">Yangın Kapı Modelleri</a></li>
+          <li><a href="#">Villa ve Apartman Kapıları</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.34 2 2 0 0 1 3.9 1H7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>0500 123 45 67</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 0C5.148 0 0 5.148 0 11.5c0 2.027.533 3.93 1.461 5.583L0 23l6.136-1.436A11.455 11.455 0 0 0 11.5 23C17.852 23 23 17.852 23 11.5S17.852 0 11.5 0zm0 21.103a9.59 9.59 0 0 1-4.887-1.336l-.35-.208-3.64.851.873-3.553-.228-.365A9.586 9.586 0 0 1 1.897 11.5C1.897 6.196 6.196 1.897 11.5 1.897c5.304 0 9.603 4.299 9.603 9.603 0 5.304-4.299 9.603-9.603 9.603z"/></svg>
+          <span>WhatsApp ile Yaz</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>info@arslancelik.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span style="font-size:13px; line-height:1.4;">Sanayi Mah. Çelik Cad. No:12<br>İstanbul</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Arslan Çelik Kapı. Tüm hakları saklıdır.</span>
+      <div class="footer-bottom-links">
+        <a href="#">KVKK Aydınlatma Metni</a>
+        <a href="#">Gizlilik Politikası</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a class="wa-btn" href="https://wa.me/905001234567?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20%C3%BCr%C3%BCnleri%20hakk%C4%B1nda%20bilgi%20ve%20teklif%20almak%20istiyorum." target="_blank" aria-label="WhatsApp ile iletişime geç">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>

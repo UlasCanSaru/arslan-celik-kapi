@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+const whatsappQuoteUrl =
+  "https://wa.me/905326470613?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum.";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const relatedPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((item) => item.slug !== post.slug)
+  .slice(0, 3);
+---
+
+<BaseLayout title={`${post.data.title} | Blog`} description={post.data.excerpt}>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-icon">AK</span>
+        <span class="logo-text">
+          <span class="brand">ARSLAN ÇELİK KAPI</span>
+          <span class="sub">Özel Ölçü Üretim</span>
+        </span>
+      </a>
+      <nav class="header-links" aria-label="Ana menü">
+        <a href="/urunler/">Ürünler</a>
+        <a href="/projeler/">Projeler</a>
+        <a href="#">Hakkımızda</a>
+        <a class="active" href="/blog/">Blog</a>
+        <a href="/iletisim/">İletişim</a>
+      </nav>
+      <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="breadcrumb">
+          <a href="/">Anasayfa</a>
+          <span>/</span>
+          <a href="/blog/">Blog</a>
+          <span>/</span>
+          <strong>{post.data.title}</strong>
+        </p>
+        <span class="hero-label">Blog Yazısı</span>
+        <h1>{post.data.title}</h1>
+        <p>{post.data.excerpt}</p>
+      </div>
+    </section>
+
+    <section class="blog-detail-section">
+      <div class="container">
+        <article class="blog-detail-card">
+          <img class="blog-detail-image" src={post.data.cover} alt={`${post.data.title} görseli`} />
+          <p class="blog-date">{post.data.publishedAt}</p>
+          <div class="blog-content">
+            <Content />
+          </div>
+          <div class="detail-actions">
+            <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+            <a class="btn-secondary" href="/blog/">Blog Listesine Dön</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    {
+      relatedPosts.length > 0 && (
+        <section class="related-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h3 class="section-title">Diğer Yazılar</h3>
+                <p class="section-desc">Blogdaki diğer içeriklere de göz atabilirsiniz.</p>
+              </div>
+            </div>
+            <div class="blog-grid">
+              {relatedPosts.map((item) => (
+                <article class="blog-card">
+                  <a class="blog-image-wrap" href={`/blog/${item.slug}/`}>
+                    <img class="blog-image" src={item.data.cover} alt={`${item.data.title} görseli`} loading="lazy" />
+                  </a>
+                  <div class="blog-body">
+                    <p class="blog-date">{item.data.publishedAt}</p>
+                    <h4 class="blog-title">
+                      <a href={`/blog/${item.slug}/`}>{item.data.title}</a>
+                    </h4>
+                    <p class="blog-excerpt">{item.data.excerpt}</p>
+                    <a class="blog-link" href={`/blog/${item.slug}/`}>Devamını Oku</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>

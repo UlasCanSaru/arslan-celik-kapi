@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const whatsappQuoteUrl =
+  "https://wa.me/905326470613?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum.";
+---
+
+<BaseLayout title="İletişim | Arslan Çelik Kapı" description="Arslan Çelik Kapı ile iletişime geçin, projeniz için teklif alın.">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-icon">AK</span>
+        <span class="logo-text">
+          <span class="brand">ARSLAN ÇELİK KAPI</span>
+          <span class="sub">Özel Ölçü Üretim</span>
+        </span>
+      </a>
+      <nav class="header-links" aria-label="Ana menü">
+        <a href="/urunler/">Ürünler</a>
+        <a href="/projeler/">Projeler</a>
+        <a href="#">Hakkımızda</a>
+        <a href="/blog/">Blog</a>
+        <a class="active" href="/iletisim/">İletişim</a>
+      </nav>
+      <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="hero-label">İletişim</span>
+        <h1>Projeniz için <span>Teklif Alın</span></h1>
+        <p>Formu doldurun, ekip en kısa sürede sizinle iletişime geçsin. İsterseniz doğrudan WhatsApp hattından da yazabilirsiniz.</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-grid">
+        <aside class="contact-card">
+          <h2>İletişim Bilgileri</h2>
+          <p>Uygun kapı modelini birlikte belirleyelim. Ölçü ve kategori bilgisini paylaşmanız yeterli.</p>
+
+          <div class="contact-list">
+            <a class="contact-item" href="tel:+905326470613">
+              <span class="contact-item-label">Telefon</span>
+              <strong>0532 647 06 13</strong>
+            </a>
+            <a class="contact-item" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">
+              <span class="contact-item-label">WhatsApp</span>
+              <strong>Mesaj Gönder</strong>
+            </a>
+            <a class="contact-item" href="mailto:info@arslancelikkapi.com">
+              <span class="contact-item-label">E-posta</span>
+              <strong>info@arslancelikkapi.com</strong>
+            </a>
+            <div class="contact-item">
+              <span class="contact-item-label">Çalışma Saatleri</span>
+              <strong>Pzt-Cts 08:00 - 18:00</strong>
+            </div>
+          </div>
+        </aside>
+
+        <article class="contact-form-card">
+          <h2>Teklif Formu</h2>
+          <p>Gönderim sonrası mesajınız WhatsApp üzerinden hazır metin olarak açılır.</p>
+
+          <form id="contact-whatsapp-form" class="contact-form">
+            <div class="form-row">
+              <label>
+                Ad Soyad
+                <input id="contact-name" name="name" type="text" placeholder="Adınız Soyadınız" required />
+              </label>
+              <label>
+                Telefon
+                <input id="contact-phone" name="phone" type="tel" placeholder="05xx xxx xx xx" required />
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                E-posta
+                <input id="contact-email" name="email" type="email" placeholder="ornek@mail.com" />
+              </label>
+              <label>
+                Kategori
+                <select id="contact-category" name="category" required>
+                  <option value="">Seçiniz</option>
+                  <option value="Çelik Kapı">Çelik Kapı</option>
+                  <option value="Yangın Kapısı">Yangın Kapısı</option>
+                  <option value="Bina Giriş Kapısı">Bina Giriş Kapısı</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Mesaj
+              <textarea id="contact-message" name="message" rows="5" placeholder="Ölçü, renk veya proje detayını yazabilirsiniz." required></textarea>
+            </label>
+            <button class="btn-primary" type="submit">WhatsApp ile Gönder</button>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    const form = document.getElementById("contact-whatsapp-form");
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("contact-name")?.value?.trim() ?? "";
+        const phone = document.getElementById("contact-phone")?.value?.trim() ?? "";
+        const email = document.getElementById("contact-email")?.value?.trim() ?? "";
+        const category = document.getElementById("contact-category")?.value?.trim() ?? "";
+        const message = document.getElementById("contact-message")?.value?.trim() ?? "";
+
+        const lines = [
+          "Merhaba, teklif almak istiyorum.",
+          `Ad Soyad: ${name}`,
+          `Telefon: ${phone}`,
+          `Kategori: ${category || "-"}`,
+          `E-posta: ${email || "-"}`,
+          `Mesaj: ${message}`,
+        ];
+
+        const text = encodeURIComponent(lines.join("\n"));
+        const url = `https://wa.me/${"905326470613"}?text=${text}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+    }
+  </script>
+</BaseLayout>

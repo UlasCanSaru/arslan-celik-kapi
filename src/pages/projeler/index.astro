@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const categoryMap = {
+  "celik-kapi": "Çelik Kapı",
+  "yangin-kapisi": "Yangın Kapısı",
+  "bina-giris-kapisi": "Bina Giriş Kapısı",
+} as const;
+
+const selectedCategory = Astro.url.searchParams.get("kategori");
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort((a, b) =>
+  b.data.completionYear.localeCompare(a.data.completionYear, "tr"),
+);
+
+const filteredProjects = selectedCategory
+  ? projects.filter((entry) => entry.data.doorCategory === selectedCategory)
+  : projects;
+
+const whatsappQuoteUrl =
+  "https://wa.me/905326470613?text=Merhaba%2C%20Arslan%20%C3%87elik%20Kap%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum.";
+---
+
+<BaseLayout title="Projeler | Arslan Çelik Kapı" description="Tamamlanan çelik kapı, yangın kapısı ve bina giriş kapısı projeleri.">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-icon">AK</span>
+        <span class="logo-text">
+          <span class="brand">ARSLAN ÇELİK KAPI</span>
+          <span class="sub">Özel Ölçü Üretim</span>
+        </span>
+      </a>
+      <nav class="header-links" aria-label="Ana menü">
+        <a href="/urunler/">Ürünler</a>
+        <a class="active" href="/projeler/">Projeler</a>
+        <a href="#">Hakkımızda</a>
+        <a href="/blog/">Blog</a>
+        <a href="/iletisim/">İletişim</a>
+      </nav>
+      <a class="btn-primary" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Teklif Al</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="hero-label">Tamamlanan İşler</span>
+        <h1>Proje <span>Referansları</span></h1>
+        <p>Konut, apartman ve ticari yapılarda tamamladığımız kapı uygulamalarını proje bazında inceleyebilirsiniz.</p>
+      </div>
+    </section>
+
+    <section class="projects-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Projeler</h2>
+            <p class="section-desc">Kategorilere göre filtreleyin, şehir ve tamamlanma yılına göre proje geçmişini görüntüleyin.</p>
+          </div>
+        </div>
+
+        <nav class="category-nav" aria-label="Proje kategorileri">
+          <a class:list={["category-link", !selectedCategory && "active"]} href="/projeler/">Tüm Projeler</a>
+          <a class:list={["category-link", selectedCategory === "celik-kapi" && "active"]} href="/projeler/?kategori=celik-kapi">Çelik Kapı</a>
+          <a class:list={["category-link", selectedCategory === "yangin-kapisi" && "active"]} href="/projeler/?kategori=yangin-kapisi">Yangın Kapısı</a>
+          <a class:list={["category-link", selectedCategory === "bina-giris-kapisi" && "active"]} href="/projeler/?kategori=bina-giris-kapisi">Bina Giriş Kapısı</a>
+        </nav>
+
+        {
+          filteredProjects.length > 0 ? (
+            <div class="projects-grid">
+              {filteredProjects.map((project) => (
+                <article class="project-card">
+                  <div class="project-image-wrap">
+                    <img class="project-image" src={project.data.cover} alt={`${project.data.title} görseli`} loading="lazy" />
+                  </div>
+                  <div class="project-body">
+                    <span class="project-category">{categoryMap[project.data.doorCategory]}</span>
+                    <h3 class="project-title">{project.data.title}</h3>
+                    <p class="project-summary">{project.data.shortDescription}</p>
+                    <div class="project-meta">
+                      <span>{project.data.city}</span>
+                      <span>•</span>
+                      <span>{project.data.completionYear}</span>
+                    </div>
+                    <a class="project-link" href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">Benzer Proje İçin Teklif Al</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="product-empty">Bu kategori için henüz proje bulunmuyor.</div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
