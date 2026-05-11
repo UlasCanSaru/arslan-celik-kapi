@@ -1,0 +1,62 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: UlasCanSaru/arslan-celik-kapi
+  branch: master
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+site_url: /
+
+collections:
+  - name: products
+    label: Ürünler
+    folder: src/content/products
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.modelCode}}"
+    fields:
+      - { label: "Ürün Adı", name: "title", widget: "string" }
+      - { label: "Model Kodu", name: "modelCode", widget: "string" }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Çelik Kapı", value: "celik-kapi" }
+          - { label: "Yangın Kapısı", value: "yangin-kapisi" }
+          - { label: "Bina Giriş Kapısı", value: "bina-giris-kapisi" }
+      - { label: "Kısa Açıklama", name: "shortDescription", widget: "text" }
+      - { label: "Ölçü", name: "size", widget: "string" }
+      - { label: "Renk", name: "color", widget: "string" }
+      - { label: "Malzeme", name: "material", widget: "string" }
+      - { label: "Kapak Görseli", name: "image", widget: "image" }
+      - label: "Galeri"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Görsel", name: "item", widget: "image" }
+      - label: "Özellikler"
+        name: "features"
+        widget: "list"
+        required: false
+        field: { label: "Özellik", name: "item", widget: "string" }
+      - { label: "Taslak", name: "draft", widget: "boolean", default: false }
+      - { label: "Detay İçeriği", name: "body", widget: "markdown", required: false }
+
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Özet", name: "excerpt", widget: "text" }
+      - { label: "Yayın Tarihi", name: "publishedAt", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Kapak Görseli", name: "cover", widget: "image" }
+      - { label: "Taslak", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
