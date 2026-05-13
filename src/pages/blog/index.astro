@@ -9,10 +9,30 @@ const blogPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
 );
 
-const firstPost = blogPosts[0];
-const secondPost = blogPosts[1];
-const thirdRowPosts = blogPosts.slice(2, 4);
-const remainingPosts = blogPosts.slice(4);
+const posts = blogPosts.slice(0, 10);
+
+const row1 = posts.slice(0, 2);
+const row2 = posts.slice(2, 5);
+const row3 = posts.slice(5, 7);
+const row4 = posts.slice(7, 9);
+const row5 = posts.slice(9, 10);
+
+const formatDate = (value: string) => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("tr-TR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
+
+const inferCategory = (title: string) => {
+  const normalized = title.toLocaleLowerCase("tr-TR");
+  if (normalized.includes("yangın")) return "Yangın Kapısı";
+  if (normalized.includes("bina") || normalized.includes("giriş") || normalized.includes("apartman")) return "Bina Giriş Kapısı";
+  return "Çelik Kapı";
+};
 ---
 
 <BaseLayout title="Blog | Arslan Çelik Kapı" description="Kapı seçimi, güvenlik ve uygulama süreçleri hakkında blog yazıları.">
@@ -46,54 +66,50 @@ const remainingPosts = blogPosts.slice(4);
     </section>
 
     <section class="blog-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Son Yazılar</h2>
-            <p class="section-desc">Çelik kapılar, yangın kapıları ve bina giriş sistemleri hakkında güncel rehberlere, fiyat bilgilerine ve seçim önerilerine göz atın. Güvenlik, dayanıklılık ve modern tasarımı bir araya getiren içeriklerimizi keşfedin.</p>
-          </div>
-        </div>
-
+      <div class="container editorial-wrapper">
         {
-          blogPosts.length > 0 ? (
-            <div class="blog-flow">
+          posts.length > 0 ? (
+            <div class="editorial-grid" aria-label="Blog yazıları liste görünümü">
               {
-                firstPost && (
-                  <article class="flow-item flow-primary">
-                    <a class="flow-media flow-media-primary" href={`/blog/${firstPost.slug}/`}>
-                      <img src={firstPost.data.cover} alt={`${firstPost.data.title} görseli`} loading="lazy" />
-                    </a>
-                    <div class="flow-title">
-                      <h3><a href={`/blog/${firstPost.slug}/`}>{firstPost.data.title}</a></h3>
-                    </div>
-                  </article>
+                row1.length > 0 && (
+                  <div class="editorial-row row-1">
+                    {row1.map((post, index) => {
+                      const isLarge = index === 0 || row1.length === 1;
+                      return (
+                        <article class:list={["editorial-item", isLarge ? "size-large" : "size-small"]}>
+                          <a class="editorial-link" href={`/blog/${post.slug}/`}>
+                            <div class="editorial-media">
+                              <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                            </div>
+                            <div class="editorial-content">
+                              <p class="editorial-category">{inferCategory(post.data.title)}</p>
+                              <h2>{post.data.title}</h2>
+                              {isLarge && post.data.excerpt && <p class="editorial-excerpt">{post.data.excerpt}</p>}
+                              <p class="editorial-date">{formatDate(post.data.publishedAt)}</p>
+                            </div>
+                          </a>
+                        </article>
+                      );
+                    })}
+                  </div>
                 )
               }
 
               {
-                secondPost && (
-                  <article class="flow-item flow-split">
-                    <a class="flow-media flow-media-split" href={`/blog/${secondPost.slug}/`}>
-                      <img src={secondPost.data.cover} alt={`${secondPost.data.title} görseli`} loading="lazy" />
-                    </a>
-                    <div class="flow-title flow-title-split">
-                      <h3><a href={`/blog/${secondPost.slug}/`}>{secondPost.data.title}</a></h3>
-                    </div>
-                  </article>
-                )
-              }
-
-              {
-                thirdRowPosts.length > 0 && (
-                  <div class="flow-pair">
-                    {thirdRowPosts.map((post) => (
-                      <article class="flow-item flow-half">
-                        <a class="flow-media flow-media-half" href={`/blog/${post.slug}/`}>
-                          <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                row2.length > 0 && (
+                  <div class="editorial-row row-2">
+                    {row2.map((post) => (
+                      <article class="editorial-item size-compact">
+                        <a class="editorial-link" href={`/blog/${post.slug}/`}>
+                          <div class="editorial-media">
+                            <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                          </div>
+                          <div class="editorial-content">
+                            <p class="editorial-category">{inferCategory(post.data.title)}</p>
+                            <h3>{post.data.title}</h3>
+                            <p class="editorial-date">{formatDate(post.data.publishedAt)}</p>
+                          </div>
                         </a>
-                        <div class="flow-title">
-                          <h3><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h3>
-                        </div>
                       </article>
                     ))}
                   </div>
@@ -101,16 +117,67 @@ const remainingPosts = blogPosts.slice(4);
               }
 
               {
-                remainingPosts.length > 0 && (
-                  <div class="flow-remaining">
-                    {remainingPosts.map((post) => (
-                      <article class="flow-item flow-row">
-                        <a class="flow-media flow-media-row" href={`/blog/${post.slug}/`}>
-                          <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                row3.length > 0 && (
+                  <div class="editorial-row row-3">
+                    {row3.map((post, index) => {
+                      const isLarge = row3.length === 1 ? true : index === 1;
+                      return (
+                        <article class:list={["editorial-item", isLarge ? "size-large" : "size-small"]}>
+                          <a class="editorial-link" href={`/blog/${post.slug}/`}>
+                            <div class="editorial-media">
+                              <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                            </div>
+                            <div class="editorial-content">
+                              <p class="editorial-category">{inferCategory(post.data.title)}</p>
+                              <h2>{post.data.title}</h2>
+                              {isLarge && post.data.excerpt && <p class="editorial-excerpt">{post.data.excerpt}</p>}
+                              <p class="editorial-date">{formatDate(post.data.publishedAt)}</p>
+                            </div>
+                          </a>
+                        </article>
+                      );
+                    })}
+                  </div>
+                )
+              }
+
+              {
+                row4.length > 0 && (
+                  <div class="editorial-row row-4">
+                    {row4.map((post) => (
+                      <article class="editorial-item size-horizontal">
+                        <a class="editorial-link horizontal-link" href={`/blog/${post.slug}/`}>
+                          <div class="editorial-media horizontal-media">
+                            <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                          </div>
+                          <div class="editorial-content horizontal-content">
+                            <p class="editorial-category">{inferCategory(post.data.title)}</p>
+                            <h3>{post.data.title}</h3>
+                            <p class="editorial-date">{formatDate(post.data.publishedAt)}</p>
+                          </div>
                         </a>
-                        <div class="flow-title">
-                          <h3><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h3>
-                        </div>
+                      </article>
+                    ))}
+                  </div>
+                )
+              }
+
+              {
+                row5.length > 0 && (
+                  <div class="editorial-row row-5">
+                    {row5.map((post) => (
+                      <article class="editorial-item size-full-horizontal">
+                        <a class="editorial-link horizontal-link" href={`/blog/${post.slug}/`}>
+                          <div class="editorial-media horizontal-media">
+                            <img src={post.data.cover} alt={`${post.data.title} görseli`} loading="lazy" />
+                          </div>
+                          <div class="editorial-content horizontal-content">
+                            <p class="editorial-category">{inferCategory(post.data.title)}</p>
+                            <h2>{post.data.title}</h2>
+                            {post.data.excerpt && <p class="editorial-excerpt">{post.data.excerpt}</p>}
+                            <p class="editorial-date">{formatDate(post.data.publishedAt)}</p>
+                          </div>
+                        </a>
                       </article>
                     ))}
                   </div>
@@ -141,177 +208,232 @@ const remainingPosts = blogPosts.slice(4);
       max-width: 860px;
     }
 
-    .blog-section .section-head {
-      width: 100%;
-      margin-inline: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .blog-section .section-head .section-title,
-    .blog-section .section-head .section-desc {
-      text-align: center;
-      margin-inline: auto;
-    }
-
-    .blog-flow {
-      display: grid;
-      gap: 28px;
-    }
-
-    .flow-item {
+    .editorial-wrapper {
+      --ink: #111111;
+      --muted: #5f5b56;
+      --paper: #ffffff;
+      --line-strong: 2.2px;
       background: transparent;
-      border: 0;
-      box-shadow: none;
-      overflow: hidden;
     }
 
-    .flow-media {
+    .editorial-grid {
+      border-top: var(--line-strong) solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .editorial-row {
+      display: grid;
+      border-top: 1px solid var(--ink);
+    }
+
+    .editorial-row:first-child {
+      border-top: 0;
+    }
+
+    .row-1 {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    .row-2 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .row-3 {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+
+    .row-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .row-5 {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .editorial-item + .editorial-item {
+      border-left: 1px solid var(--ink);
+    }
+
+    .editorial-link {
+      color: #111;
+      text-decoration: none;
       display: block;
-      background: #fff;
+      height: 100%;
+      background: var(--paper);
+    }
+
+    .editorial-media {
+      width: 100%;
       overflow: hidden;
     }
 
-    .flow-media img {
+    .size-large .editorial-media {
+      height: 164px;
+    }
+
+    .size-small .editorial-media {
+      height: 88px;
+    }
+
+    .size-compact .editorial-media {
+      height: 82px;
+    }
+
+    .size-horizontal .horizontal-media,
+    .size-full-horizontal .horizontal-media {
+      width: 128px;
+      height: 84px;
+      flex: 0 0 128px;
+      border-right: 1px solid var(--ink);
+    }
+
+    .size-full-horizontal .horizontal-media {
+      width: 148px;
+      height: 92px;
+      flex-basis: 148px;
+    }
+
+    .editorial-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
+      filter: grayscale(15%) saturate(75%) contrast(95%);
+      transition: filter 0.2s ease;
     }
 
-    .flow-item:hover .flow-media img {
-      transform: scale(1.02);
+    .editorial-content {
+      padding: 12px 14px 13px;
+      border-top: 1px solid var(--ink);
+      background: var(--paper);
     }
 
-    .flow-title {
-      min-height: 94px;
-      background: #fff;
+    .horizontal-link {
       display: flex;
-      align-items: center;
-      padding: 20px 24px;
+      align-items: stretch;
     }
 
-    .flow-title h3 {
+    .horizontal-link .horizontal-content {
+      border-top: 0;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .editorial-category {
+      margin: 0 0 6px;
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #2d2a26;
+      font-weight: 600;
+    }
+
+    .editorial-content h2,
+    .editorial-content h3 {
       margin: 0;
-      font-size: clamp(22px, 2.8vw, 32px);
+      color: #161310;
       line-height: 1.2;
-      letter-spacing: -0.02em;
-      font-family: "Manrope", sans-serif;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      transition: opacity 0.2s ease;
     }
 
-    .flow-half .flow-title h3,
-    .flow-row .flow-title h3,
-    .flow-split .flow-title h3 {
-      font-size: clamp(20px, 2.2vw, 30px);
+    .editorial-content h2 {
+      font-size: clamp(24px, 2.6vw, 34px);
     }
 
-    .flow-title a {
-      text-decoration: none;
-      color: #171411;
+    .size-small .editorial-content h2,
+    .size-compact .editorial-content h3,
+    .size-horizontal .editorial-content h3 {
+      font-size: clamp(18px, 2vw, 25px);
     }
 
-    .flow-title a:hover {
-      color: #b06f1f;
+    .size-full-horizontal .editorial-content h2 {
+      font-size: clamp(22px, 2.4vw, 30px);
     }
 
-    .flow-media-primary {
-      min-height: clamp(340px, 52vw, 560px);
+    .editorial-excerpt {
+      margin: 9px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
-    .flow-split {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      background: #fff;
+    .editorial-date {
+      margin: 8px 0 0;
+      color: #52504c;
+      font-size: 12px;
+      letter-spacing: 0.01em;
     }
 
-    .flow-media-split {
-      min-height: clamp(180px, 24vw, 280px);
+    .editorial-link:hover .editorial-content h2,
+    .editorial-link:hover .editorial-content h3 {
+      opacity: 0.86;
     }
 
-    .flow-title-split {
-      min-height: clamp(180px, 24vw, 280px);
-      align-items: flex-start;
-      padding-top: 24px;
-      padding-bottom: 24px;
+    .editorial-link:hover .editorial-media img {
+      filter: grayscale(10%) saturate(82%) contrast(98%);
     }
 
-    .flow-pair {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
+    .editorial-link:focus-visible {
+      outline: 2px solid #1b1b1b;
+      outline-offset: -2px;
     }
 
-    .flow-media-half {
-      min-height: clamp(220px, 28vw, 320px);
-    }
-
-    .flow-remaining {
-      display: grid;
-      gap: 24px;
-    }
-
-    .flow-media-row {
-      min-height: clamp(220px, 26vw, 300px);
-    }
-
-    .flow-media:focus-visible,
-    .flow-title a:focus-visible {
-      outline: 2px solid #c8842f;
-      outline-offset: 3px;
-    }
-
-    @media (max-width: 1024px) {
-      .flow-split {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .editorial-grid {
+        border-top-width: 2px;
       }
 
-      .flow-title-split {
-        min-height: 94px;
-        align-items: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
+      .editorial-row {
+        grid-template-columns: minmax(0, 1fr) !important;
       }
 
-      .flow-pair {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .blog-flow {
-        gap: 18px;
+      .editorial-item {
+        border-left: 0 !important;
       }
 
-      .flow-pair {
-        grid-template-columns: 1fr;
-        gap: 18px;
+      .editorial-item + .editorial-item {
+        border-top: 1px solid var(--ink);
       }
 
-      .flow-title {
-        min-height: 86px;
-        padding: 16px 18px;
+      .horizontal-link {
+        display: block;
       }
 
-      .flow-title h3,
-      .flow-half .flow-title h3,
-      .flow-row .flow-title h3,
-      .flow-split .flow-title h3 {
-        font-size: clamp(18px, 6vw, 26px);
+      .size-horizontal .horizontal-media,
+      .size-full-horizontal .horizontal-media {
+        width: 100%;
+        height: 96px;
+        border-right: 0;
       }
 
-      .flow-media-primary {
-        min-height: clamp(240px, 62vw, 360px);
+      .horizontal-link .horizontal-content {
+        border-top: 1px solid var(--ink);
       }
 
-      .flow-media-split,
-      .flow-media-half,
-      .flow-media-row {
-        min-height: clamp(180px, 55vw, 280px);
+      .size-large .editorial-media {
+        height: 158px;
+      }
+
+      .size-small .editorial-media,
+      .size-compact .editorial-media {
+        height: 92px;
+      }
+
+      .editorial-content {
+        padding: 12px;
+      }
+
+      .editorial-content h2,
+      .editorial-content h3,
+      .size-small .editorial-content h2,
+      .size-compact .editorial-content h3,
+      .size-horizontal .editorial-content h3,
+      .size-full-horizontal .editorial-content h2 {
+        font-size: clamp(19px, 5.6vw, 27px);
       }
     }
   </style>
