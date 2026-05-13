@@ -7,46 +7,48 @@ excerpt: Çelik kapılar, hem güvenlik hem de estetik açıdan bir yapının en
   seçimi yapmanıza yardımcı olacağız.
 publishedAt: 2026-05-13
 cover: /images/uploads/1.jpg
-draft: true
+draft: false
 ---
-En Popüler Çelik Kapı Modelleri
+# En Popüler Çelik Kapı Modelleri
 
-1. Klasik Çelik Kapı Modelleri
-Klasik tasarıma sahip çelik kapılar, sade ve zamansız bir görünüm sunar. Genellikle ahşap desenli yüzeylerle üretilir ve her türlü mimariye uyum sağlar.
-Avantajları:
-    • Uygun fiyatlıdır
-    • Her mekana uyum sağlar
-    • Dayanıklıdır
+# 1.Klasik Çelik Kapı Modelleri
 
-2. Modern Çelik Kapı Modelleri
-Minimalist ve şık tasarımlarıyla öne çıkan modern çelik kapılar, genellikle düz yüzeyli ve farklı renk seçeneklerine sahiptir.
-Avantajları:
-    • Estetik görünüm
-    • Yeni nesil kilit sistemleri
-    • Farklı renk ve tasarım seçenekleri
+* Klasik tasarıma sahip çelik kapılar, sade ve zamansız bir görünüm sunar. Genellikle ahşap desenli yüzeylerle üretilir ve her türlü mimariye uyum sağlar.
+      Avantajları:
+      •    Uygun fiyatlıdır
+      •    Her mekana uyum sağlar
+      •    Dayanıklıdır
 
-3. Lüks Çelik Kapı Modelleri
-Özel tasarım, CNC işlemeli veya lake kaplama gibi detaylara sahip üst segment kapılardır. Genellikle villa ve prestijli projelerde tercih edilir.
-Avantajları:
-    • Yüksek güvenlik
-    • Özel üretim seçenekleri
-    • Premium malzeme kalitesi
+## 2.Modern Çelik Kapı Modelleri
 
-4. Villa Tipi Çelik Kapılar
-Büyük ölçülerde üretilen, çift kanatlı veya özel tasarımlı kapılardır. Hem güvenlik hem de görsellik ön plandadır.
-Avantajları:
-    • Geniş girişler için ideal
-    • Gösterişli tasarım
-    • Üst düzey güvenlik
+* Minimalist ve şık tasarımlarıyla öne çıkan modern çelik kapılar, genellikle düz yüzeyli ve farklı renk seçeneklerine sahiptir.
+  Avantajları:
+      •Estetik görünüm
+        •Yeni nesil kilit sistemleri
+        •Farklı renk ve tasarım seçenekleri
 
-5. Akıllı Kilitli Çelik Kapılar
-Yeni nesil teknolojilerle donatılmış bu kapılar; parmak izi, kart veya şifre ile açılabilir.
-Avantajları:
-    • Maksimum güvenlik
-    • Anahtarsız kullanım
-    • Teknolojik konfor
+* Lüks Çelik Kapı Modelleri
+  Özel tasarım, CNC işlemeli veya lake kaplama gibi detaylara sahip üst segment kapılardır. Genellikle villa ve prestijli projelerde tercih edilir.
+  Avantajları:
+      • Yüksek güvenlik
+      • Özel üretim seçenekleri
+      • Premium malzeme kalitesi
+
+1. Villa Tipi Çelik Kapılar
+   Büyük ölçülerde üretilen, çift kanatlı veya özel tasarımlı kapılardır. Hem güvenlik hem de görsellik ön plandadır.
+   Avantajları:
+       • Geniş girişler için ideal
+       • Gösterişli tasarım
+       • Üst düzey güvenlik
+2. Akıllı Kilitli Çelik Kapılar
+   Yeni nesil teknolojilerle donatılmış bu kapılar; parmak izi, kart veya şifre ile açılabilir.
+   Avantajları:
+       • Maksimum güvenlik
+       • Anahtarsız kullanım
+       • Teknolojik konfor
 
 Çelik Kapı Fiyatları 2026
+
 Çelik kapı fiyatları; kullanılan malzeme, kapı kalınlığı, kilit sistemi, tasarım ve ölçülere göre değişiklik gösterir.
 Ortalama fiyat aralıkları:
     • Standart çelik kapılar: 15.000 TL – 25.000 TL
