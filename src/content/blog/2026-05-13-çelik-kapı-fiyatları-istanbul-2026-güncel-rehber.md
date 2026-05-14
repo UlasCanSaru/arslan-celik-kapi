@@ -5,7 +5,7 @@ excerpt: İstanbul’da güvenlik ve estetiği bir arada sunan çelik kapılar, 
   kadar? Bu yazıda fiyatları etkileyen tüm faktörleri, ortalama maliyetleri ve
   doğru kapıyı seçmenin püf noktalarını detaylı şekilde ele alıyoruz.
 publishedAt: 2026-05-13
-cover: /images/WhatsApp Image 2026-05-13 at 12.03.05 (4).jpeg
+cover: /images/WhatsApp Image 2026-05-13 at 12.03.05 (4)-1.jpeg
 draft: false
 ---
 # **Çelik Kapı Fiyatları İstanbul (2026 Güncel Rehber)**
