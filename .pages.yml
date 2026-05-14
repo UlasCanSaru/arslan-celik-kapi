@@ -12,6 +12,9 @@ content:
     label: Ürünler
     type: collection
     path: src/content/products
+    filename:
+      template: "{title}.md"
+      field: create
     view:
       fields: [title, modelCode, category]
     fields:
@@ -60,21 +63,17 @@ content:
           extensions: [jpg, jpeg, png, webp]
       - name: gallery
         label: Ürün Galerisi
-        type: list
+        type: image
+        list: true
         required: false
-        default: []
-        item:
-          type: image
-          options:
-            path: products
-            extensions: [jpg, jpeg, png, webp]
+        options:
+          path: products
+          extensions: [jpg, jpeg, png, webp]
       - name: features
         label: Öne Çıkan Özellikler
-        type: list
+        type: string
+        list: true
         required: false
-        default: []
-        item:
-          type: string
       - name: draft
         label: Taslak
         type: boolean
@@ -84,10 +83,14 @@ content:
         type: rich-text
         options:
           format: markdown
+
   - name: blog
     label: Blog
     type: collection
     path: src/content/blog
+    filename:
+      template: "{title}.md"
+      field: create
     view:
       fields: [title, publishedAt]
     fields:
@@ -119,59 +122,3 @@ content:
         type: rich-text
         options:
           format: markdown
-  - name: projects
-    label: Projeler
-    type: collection
-    path: src/content/projects
-    view:
-      fields: [title, city, completionYear, doorCategory]
-    fields:
-      - name: title
-        label: Proje Adı
-        type: string
-        required: true
-      - name: shortDescription
-        label: Kısa Açıklama
-        type: text
-        required: true
-      - name: city
-        label: Şehir
-        type: string
-        required: true
-      - name: completionYear
-        label: Tamamlanma Yılı
-        type: string
-        required: true
-      - name: doorCategory
-        label: Kapı Kategorisi
-        type: select
-        required: true
-        options:
-          values:
-            - value: celik-kapi
-              label: Çelik Kapı
-            - value: yangin-kapisi
-              label: Yangın Kapısı
-            - value: bina-giris-kapisi
-              label: Bina Giriş Kapısı
-      - name: cover
-        label: Kapak Görseli
-        type: image
-        required: true
-        options:
-          path: projects
-          extensions: [jpg, jpeg, png, webp]
-      - name: gallery
-        label: Proje Galerisi
-        type: list
-        required: false
-        default: []
-        item:
-          type: image
-          options:
-            path: projects
-            extensions: [jpg, jpeg, png, webp]
-      - name: draft
-        label: Taslak
-        type: boolean
-        default: false
