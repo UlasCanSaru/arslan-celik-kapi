@@ -5,7 +5,7 @@ excerpt: Çelik kapılar, dayanıklılığı ve güvenliği ile ön plana çıka
   değişikliğine uyum sağlamak için boyanmak istenebilir. Peki çelik kapı nasıl
   boyanır? Bu rehberde adım adım tüm süreci detaylı şekilde anlatıyoruz.
 publishedAt: 2026-05-13
-cover: /images/WhatsApp Image 2026-05-13 at 12.03.06.jpeg
+cover: /images/WhatsApp Image 2026-05-13 at 12.03.06-1.jpeg
 draft: false
 ---
 # **Çelik Kapı Nasıl Boyanır? (Adım Adım Rehber)**
