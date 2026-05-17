@@ -15,14 +15,9 @@ import "../styles/global.css";
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/images/logo/favicon-32.png" />
     <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">İçeriğe geç</a>
     <slot />
     <footer>
       <div class="container">
@@ -108,8 +103,8 @@ import "../styles/global.css";
     </a>
 
     <script>
-        document.getElementById("year").textContent =
-    new Date().getFullYear();
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     </script>
 
   </body>

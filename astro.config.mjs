@@ -4,5 +4,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: "https://example.com",
-  adapter: cloudflare()
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
 });

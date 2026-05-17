@@ -57,7 +57,7 @@ const inferCategory = (title: string) => {
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container hero-inner">
         <h1>Bilgi ve <span>Rehber Yazıları</span></h1>
@@ -192,8 +192,6 @@ const inferCategory = (title: string) => {
     </section>
   </main>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap");
-
     .blog-section {
   background: #ffffff;
     }
@@ -477,7 +475,7 @@ const inferCategory = (title: string) => {
       }
 
       .editorial-item + .editorial-item {
-      .border-top: 1px solid var(--line-soft);
+        border-top: 1px solid var(--line-soft);
       }
 
       .horizontal-link {

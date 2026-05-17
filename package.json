@@ -21,6 +21,14 @@
     "wrangler": "^4.90.0"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12"
+    "@astrojs/cloudflare": "12",
+    "@fontsource/cormorant-garamond": "^5.2.11",
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/dm-serif-display": "^5.2.8",
+    "@fontsource/fraunces": "^5.2.9",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/kalam": "^5.2.8",
+    "@fontsource/manrope": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8"
   }
 }
